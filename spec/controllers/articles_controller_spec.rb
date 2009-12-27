@@ -69,5 +69,9 @@ describe ArticlesController do
       do_show
       response.should be_success
     end
+    it "assigns article" do
+      do_show
+      assigns[:article].should == @article
+    end
   end
 end
