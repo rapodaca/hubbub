@@ -22,12 +22,28 @@ describe ArticlesController do
     get :index
   end
   
+  def do_create
+    post :create, :article => {}
+  end
+  
   def do_show
     get :show
   end
   
   def do_new
     get :new
+  end
+  
+  def do_update
+    put :update
+  end
+  
+  def do_edit
+    get :edit
+  end
+  
+  def do_destroy
+    delete :destroy
   end
   
   describe "GET index" do
@@ -68,6 +84,39 @@ describe ArticlesController do
     end
   end
   
+  describe "POST create" do
+    before(:each) do
+      mock_article
+      new_article
+    end
+    describe "when successful" do
+      before(:each) do
+        @article.stub!(:save).and_return true
+      end
+      it "flashes success" do
+        do_create
+        flash[:success].should_not be_blank
+      end
+      it "redirects to article url" do
+        do_create
+        response.should redirect_to(article_url(@article))
+      end
+    end
+    describe "when unsuccessful" do
+      before(:each) do
+        @article.stub!(:save).and_return false
+      end
+      it "renders new" do
+        do_create
+        response.should render_template(:new)
+      end
+      it "returns unprocessable" do
+        do_create
+        response.response_code.should == 422
+      end
+    end
+  end
+  
   describe "GET new" do
     before(:each) do
       mock_article
@@ -91,6 +140,70 @@ describe ArticlesController do
     it "assigns article" do
       do_show
       assigns[:article].should == @article
+    end
+  end
+  
+  describe "PUT update" do
+    before(:each) do
+      mock_article
+      find_by_permalink
+    end
+    describe "when successful" do
+      before(:each) do
+        @article.stub!(:update_attributes).and_return true
+      end
+      it "redirects to article url" do
+        do_update
+        response.should redirect_to(article_url(@article))
+      end
+      it "flashes success" do
+        do_update
+        flash[:success].should_not be_blank
+      end
+    end
+    describe "when unsuccessful" do
+      before(:each) do
+        @article.stub!(:update_attributes).and_return false
+      end
+      it "renders edit" do
+        do_update
+        response.should render_template(:edit)
+      end
+      it "returns unprocessable entity" do
+        do_update
+        response.response_code.should == 422
+      end
+    end
+  end
+  
+  describe "GET edit" do
+    before(:each) do
+      mock_article
+      find_by_permalink
+    end
+    it "assigns article" do
+      do_edit
+      assigns[:article].should == @article
+    end
+  end
+  
+  describe "DELETE destroy" do
+    before(:each) do
+      mock_article
+      @article.stub!(:destroy).and_return(true)
+      find_by_permalink
+    end
+    it "redirects to articles url" do
+      do_destroy
+      response.should redirect_to(articles_url)
+    end
+    it "destroys article" do
+      @article.should_receive(:destroy)
+      do_destroy
+    end
+    it "flashes success" do
+      do_destroy
+      flash[:success].should_not be_blank
     end
   end
 end

@@ -15,6 +15,14 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    @article = Article.new(params[:article])
+    
+    if @article.save
+      flash[:success] = "Created article."
+      redirect_to(article_url(@article))
+    else
+      render :action => 'new', :status => :unprocessable_entity
+    end
   end
 
   def new
@@ -26,11 +34,24 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article = Article.find_by_permalink params
+    
+    if @article.update_attributes(params[:article])
+      flash[:success] = "Article updated."
+      redirect_to article_url(@article)
+    else
+      render :action => 'edit', :status => :unprocessable_entity
+    end
   end
 
   def edit
+    @article = Article.find_by_permalink params
   end
 
   def destroy
+    article = Article.find_by_permalink params
+    article.destroy
+    flash[:success] = "Article destroyed."
+    redirect_to articles_url
   end
 end
