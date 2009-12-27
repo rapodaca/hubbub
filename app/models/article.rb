@@ -4,6 +4,16 @@ class Article < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
   
+  has_many :taggings
+  has_many :tags, :through => :taggings
+  
+  def tag_slugs=(slugs)
+    slugs.split.each do |slug|
+      tag = Tag.find_or_initialize_by_slug slug
+      self.taggings.build :tag => tag, :article => self
+    end
+  end
+  
   private
   
   def markdown_body

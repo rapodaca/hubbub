@@ -22,11 +22,38 @@ describe Article do
     @article.body_html.should be_blank
   end
   
+  it "has no taggings" do
+    do_create
+    @article.taggings.should be_empty
+  end
+  
+  it "has no tags" do
+    do_create
+    @article.tags.should be_empty
+  end
+  
   describe "#valid?" do
     it "generates slug" do
       do_create
       @article.valid?
       @article.slug.should == 'a-tale-of-two-cities'
+    end
+  end
+  
+  describe "tag_slugs virtual attribute" do
+    describe "with three valid tags" do
+      before(:each) do
+        @atts[:tag_slugs] = "one two three"
+        do_create
+      end
+      it "is valid" do
+        @article.should be_valid
+      end
+      describe "#tags" do
+        it "returns three tags" do
+          @article.taggings.inject([]) { |taggings, tagging| taggings << tagging.tag.slug }.should == ['one', 'two', 'three']
+        end
+      end
     end
   end
   
