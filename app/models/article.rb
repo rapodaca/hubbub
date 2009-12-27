@@ -23,6 +23,21 @@ class Article < ActiveRecord::Base
     self.paginate options
   end
   
+  def self.find_by_permalink options={}
+    begin
+      article = self.find_all_by_slug(options[:slug]).detect do |article|
+        time = article.created_at
+        time.year == options[:year].to_i &&
+        time.month == options[:month].to_i &&
+        time.day == options[:day].to_i
+      end
+    rescue
+      article = nil
+    end
+
+    article || raise(ActiveRecord::RecordNotFound)
+  end
+  
   private
   
   def markdown_body

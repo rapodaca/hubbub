@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article = Article.find_by_permalink params
   end
 
   def update

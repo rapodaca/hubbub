@@ -3,21 +3,34 @@ require 'spec_helper'
 describe ArticlesController do
   def mock_article
     @article = mock_model(Article)
+  end
+  
+  def find_recent
     Article.stub!(:find_recent).and_return [@article]
+  end
+  
+  def find_by_permalink
+    Article.stub!(:find_by_permalink).and_return @article
   end
   
   def do_index mime=nil
     request.env['HTTP_ACCEPT'] = mime unless mime.blank?
     get :index
   end
+  
+  def do_show
+    get :show
+  end
+  
   describe "GET index" do
     before(:each) do
       mock_article
+      find_recent
     end
     describe "with html" do
-      it "responds OK" do
+      it "succeeds" do
         do_index
-        response.response_code.should == 200
+        response.should be_success
       end
       it "assigns articles" do
         do_index
@@ -41,9 +54,20 @@ describe ArticlesController do
         end
         it "redirects" do
           do_index 'application/atom+xml'
-          response.should redirect_to Hubbub::Config[:publisher][:redirect]
+          response.should redirect_to(Hubbub::Config[:publisher][:redirect])
         end
       end
+    end
+  end
+  
+  describe "GET show" do
+    before(:each) do
+      mock_article
+      find_by_permalink
+    end
+    it "succeeds" do
+      do_show
+      response.should be_success
     end
   end
 end

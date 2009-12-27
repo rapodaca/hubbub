@@ -49,6 +49,36 @@ describe Article do
     end
   end
   
+  describe "#find_by_permalink" do
+    before(:each) do
+      @article = Article.create!(:title => 'First',
+      :body => 'First article.')
+    end
+    
+    describe "with valid date and slug params" do
+      before(:each) do
+        @atts = {
+          :year => @article.created_at.year,
+          :month => @article.created_at.month,
+          :day => @article.created_at.day,
+          :slug => 'first'
+        }
+      end
+      it "returns article" do
+        article = Article.find_by_permalink @atts
+        article.should == @article
+      end
+      describe "but with invalid date" do
+        before(:each) do
+          @atts[:day] = @atts[:day] + 1
+        end
+        it "raises" do
+          lambda{Article.find_by_permalink}.should raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
+  end
+  
   describe "#valid?" do
     it "generates slug" do
       do_create
