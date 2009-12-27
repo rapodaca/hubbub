@@ -5,6 +5,10 @@ describe ArticlesController do
     @article = mock_model(Article)
   end
   
+  def new_article
+    Article.stub!(:new).and_return @article
+  end
+  
   def find_recent
     Article.stub!(:find_recent).and_return [@article]
   end
@@ -20,6 +24,10 @@ describe ArticlesController do
   
   def do_show
     get :show
+  end
+  
+  def do_new
+    get :new
   end
   
   describe "GET index" do
@@ -57,6 +65,17 @@ describe ArticlesController do
           response.should redirect_to(Hubbub::Config[:publisher][:redirect])
         end
       end
+    end
+  end
+  
+  describe "GET new" do
+    before(:each) do
+      mock_article
+      new_article
+    end
+    it "assigns article" do
+      do_new
+      assigns[:article].should == @article
     end
   end
   
