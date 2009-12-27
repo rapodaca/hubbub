@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+    <title><%= config[:title] %></title>
+    <%= stylesheet_link_tag 'resets' %>
+    <%= stylesheet_link_tag 'base' %>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header" class="section">
+        <%= render :partial => 'shared/header' %>
+      </div>
+      <div id="body" class="section">
+        <%= yield %>
+      </div>
+      <div id="footer" class="section">
+        <%= render :partial => 'shared/footer' %>
+      </div>
+      <div id="copyright">
+        <%= render :partial => 'shared/copyright' %>
+      </div>
+    </div>
+  </body>
+</html>

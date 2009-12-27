@@ -1,6 +1,11 @@
 --- !map:HashWithIndifferentAccess
 
-# Uncomment to enable a feed publisher to handle
+# Be sure to restart your server after you change this file.
+
+# Blog title
+title: Hubbub
+
+# Uncomment to enable a feed publisher to handle atom requests
 # user requests
 # publisher:
 #   redirect:    http://feeds/feedburner.com/my-blog
