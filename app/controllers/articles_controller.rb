@@ -1,5 +1,17 @@
 class ArticlesController < ApplicationController
   def index
+    respond_to do |format|
+      @articles = Article.find_recent(:page => params[:page])
+      
+      format.html
+      format.atom do
+        if feed_publisher_request?
+          redirect_to feed_publisher_url
+        else
+          render :layout => false
+        end
+      end
+    end
   end
 
   def create
@@ -19,5 +31,4 @@ class ArticlesController < ApplicationController
 
   def destroy
   end
-
 end

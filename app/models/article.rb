@@ -14,6 +14,15 @@ class Article < ActiveRecord::Base
     end
   end
   
+  def self.find_recent options={}
+    options = {
+      :order => 'created_at DESC',
+      :per_page => Hubbub::Config[:articles_per_page]
+    }.merge(options)
+    
+    self.paginate options
+  end
+  
   private
   
   def markdown_body

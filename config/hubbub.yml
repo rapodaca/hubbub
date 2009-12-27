@@ -1,0 +1,10 @@
+--- !map:HashWithIndifferentAccess
+
+# Uncomment to enable a feed publisher to handle
+# user requests
+# publisher:
+#   redirect:    http://feeds/feedburner.com/my-blog
+#   user_agent:  FeedBurner
+
+# Page limit
+articles_per_page: 10

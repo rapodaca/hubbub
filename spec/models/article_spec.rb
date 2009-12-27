@@ -32,6 +32,23 @@ describe Article do
     @article.tags.should be_empty
   end
   
+  describe "#find_recent" do
+    before(:each) do
+      @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)
+      @second = Article.create!(:title => 'Second', :body => 'Second article.', :created_at => 2.day.ago)
+      @third = Article.create!(:title => 'Third', :body => 'Third article.', :created_at => 3.day.ago)
+    end
+    describe "limit two per page" do
+      before(:each) do
+        Hubbub::Config.stub!(:[]).with(:articles_per_page).and_return(2)
+      end
+      it "returns last article" do
+        articles = Article.find_recent :page => 1
+        articles.should == [@first, @second]
+      end
+    end
+  end
+  
   describe "#valid?" do
     it "generates slug" do
       do_create
