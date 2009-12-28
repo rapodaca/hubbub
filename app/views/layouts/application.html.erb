@@ -7,13 +7,16 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
     <title><%= config[:title] %></title>
-    <%= stylesheet_link_tag 'resets' %>
-    <%= stylesheet_link_tag 'base' %>
+    <%= stylesheet_link_tag 'resets', 'base' %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery_cookies'%>
+    <%= javascript_include_tag 'cookie_flash'%>
     <link rel="icon" type="image/png" href="/favicon.png">
     <%= yield(:head) %>
   </head>
   <body>
     <div id="container">
+      <div id="admin"></div>
       <div id="header" class="section">
         <%= render :partial => 'shared/header' %>
       </div>
