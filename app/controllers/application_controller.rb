@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  helper_method :login, :current_user
+  helper_method :login, :current_user, :article_permalink_url
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
@@ -29,5 +29,10 @@ class ApplicationController < ActionController::Base
   def login
     return @login if defined?(@login)
     @login = UserSession.find
+  end
+  
+  def article_permalink_url article
+    time = article.created_at
+    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.slug}"
   end
 end

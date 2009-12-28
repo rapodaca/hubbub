@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ArticlesController do
   def mock_article
-    @article = mock_model(Article)
+    @article = mock_model(Article, :created_at => Time.now, :slug => 'foo')
   end
   
   def new_article
@@ -17,34 +17,26 @@ describe ArticlesController do
     Article.stub!(:find_by_permalink).and_return @article
   end
   
+  def find_article
+    Article.stub!(:find).and_return @article
+  end
+  
   def do_index mime=nil
     request.env['HTTP_ACCEPT'] = mime unless mime.blank?
     get :index
   end
   
-  def do_create
-    post :create, :article => {}
+  def article_permalink_url article
+    time = article.created_at
+    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.slug}"
   end
   
-  def do_show
-    get :show
-  end
-  
-  def do_new
-    get :new
-  end
-  
-  def do_update
-    put :update
-  end
-  
-  def do_edit
-    get :edit
-  end
-  
-  def do_destroy
-    delete :destroy
-  end
+  def do_create; post :create, :article => {}; end
+  def do_show; get :show, :id => @article.id; end
+  def do_new; get :new; end
+  def do_update; put :update, :id => @article.id; end
+  def do_edit; get :edit, :id => @article.id; end
+  def do_destroy; delete :destroy, :id => @article.id; end
   
   describe "GET index" do
     before(:each) do
@@ -97,9 +89,9 @@ describe ArticlesController do
         do_create
         flash[:success].should_not be_blank
       end
-      it "redirects to article url" do
+      it "redirects to article permalink url" do
         do_create
-        response.should redirect_to(articles_url(@article))
+        response.should redirect_to(article_permalink_url(@article))
       end
     end
     describe "when unsuccessful" do
@@ -146,7 +138,7 @@ describe ArticlesController do
   describe "PUT update" do
     before(:each) do
       mock_article
-      find_by_permalink
+      find_article
     end
     describe "when successful" do
       before(:each) do
@@ -179,7 +171,7 @@ describe ArticlesController do
   describe "GET edit" do
     before(:each) do
       mock_article
-      find_by_permalink
+      find_article
     end
     it "assigns article" do
       do_edit
@@ -191,7 +183,7 @@ describe ArticlesController do
     before(:each) do
       mock_article
       @article.stub!(:destroy).and_return(true)
-      find_by_permalink
+      find_article
     end
     it "redirects to articles url" do
       do_destroy

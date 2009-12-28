@@ -1,5 +1,7 @@
 <% title "New Article" %>
 
+<h2 class="title"><%= @title %></h2>
+
 <% semantic_form_for @article do |f| %>
   <% f.inputs do %>
     <%= f.input :title %>
