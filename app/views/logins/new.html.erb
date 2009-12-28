@@ -1,0 +1,6 @@
+<%= error_messages_for(:user_session) %>
+
+<% form_for @user_session, :url => logins_path do |f| %>
+  <%= f.text_field :openid_identifier %>
+  <%= f.submit %>
+<% end %>

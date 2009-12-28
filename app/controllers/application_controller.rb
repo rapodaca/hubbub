@@ -3,11 +3,11 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  helper_method :login, :current_user
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  
   
   protected
   
@@ -18,5 +18,16 @@ class ApplicationController < ActionController::Base
   
   def feed_publisher_url
     Hubbub::Config[:publisher][:redirect]
+  end
+  
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = login && login.user
+  end
+  
+  # From auth_logic tutorial
+  def login
+    return @login if defined?(@login)
+    @login = UserSession.find
   end
 end

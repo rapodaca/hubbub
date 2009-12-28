@@ -22,7 +22,10 @@ Rails::Initializer.run do |config|
   
   config.gem 'rdiscount', :version => '1.5.5', :source => 'http://gemcutter.org'
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
-
+  config.gem 'authlogic', :version => '2.1.3', :source => 'http://gemcutter.org'
+  config.gem "authlogic-oid", :lib => "authlogic_openid", :source => 'http://gemcutter.org'
+  config.gem 'formtastic', :source => 'http://gemcutter.org'
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
