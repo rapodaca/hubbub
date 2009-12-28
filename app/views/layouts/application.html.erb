@@ -9,14 +9,20 @@
     <title><%= config[:title] %></title>
     <%= stylesheet_link_tag 'resets', 'base' %>
     <%= javascript_include_tag 'jquery' %>
-    <%= javascript_include_tag 'jquery_cookies'%>
-    <%= javascript_include_tag 'cookie_flash'%>
+    <%= javascript_include_tag 'jquery_cookies' %>
+    <%= javascript_include_tag 'hubbub' %>
     <link rel="icon" type="image/png" href="/favicon.png">
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container">
-      <div id="admin"></div>
+    <% if admin_menu = yield(:admin) %>
+      <div id="admin">
+        <div class="main">
+          <%= admin_menu %>
+        </div>
+      </div>
+    <% end %>
+    <div id="container" class="main" >
       <div id="header" class="section">
         <%= render :partial => 'shared/header' %>
       </div>
@@ -30,5 +36,7 @@
         <%= render :partial => 'shared/copyright' %>
       </div>
     </div>
+    <%= render :partial => 'shared/scripts' %>
+    <%= yield(:scripts) %>
   </body>
 </html>

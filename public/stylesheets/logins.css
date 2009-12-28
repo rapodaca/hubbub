@@ -1,1 +1,4 @@
-form.login { color: red; }
+form.new_user_session { width: 400px; margin-left: auto;
+  margin-right: auto;  text-align: center; margin-top: 2em; }
+form input#user_session_openid_identifier { font-size: 100%; width: 300px; margin-bottom: 1em; }
+form.new_user_session fieldset { padding: 15px;   }
