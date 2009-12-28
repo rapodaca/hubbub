@@ -6,8 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
-    <title><%= config[:title] %></title>
-    <%= stylesheet_link_tag 'resets', 'base' %>
+    <title><%= yield(:title) %></title>
+    <%= stylesheet_link_tag 'resets', 'base', 'formtastic', 'formtastic_changes' %>
     <%= javascript_include_tag 'jquery' %>
     <%= javascript_include_tag 'jquery_cookies' %>
     <%= javascript_include_tag 'hubbub' %>
@@ -27,6 +27,7 @@
         <%= render :partial => 'shared/header' %>
       </div>
       <div id="body" class="section">
+        <h2 class="title"><%= @title %></h2>
         <%= yield %>
       </div>
       <div id="footer" class="section">

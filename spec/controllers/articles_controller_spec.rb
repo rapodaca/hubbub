@@ -99,7 +99,7 @@ describe ArticlesController do
       end
       it "redirects to article url" do
         do_create
-        response.should redirect_to(article_url(@article))
+        response.should redirect_to(articles_url(@article))
       end
     end
     describe "when unsuccessful" do

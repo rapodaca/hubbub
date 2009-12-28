@@ -1,2 +1,10 @@
-<h1>Articles#new</h1>
-<p>Find me in app/views/articles/new.html.erb</p>
+<% title "New Article" %>
+
+<% semantic_form_for @article do |f| %>
+  <% f.inputs do %>
+    <%= f.input :title %>
+    <%= f.input :body, :input_html => {:rows => 15} %>
+    <%= f.input :tag_slugs %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

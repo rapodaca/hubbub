@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   before_validation :generate_slug
-  after_save :markdown_body
+  before_save :markdown_body
   validates_presence_of :title
   validates_presence_of :body
   
@@ -12,6 +12,13 @@ class Article < ActiveRecord::Base
       tag = Tag.find_or_initialize_by_slug slug
       self.taggings.build :tag => tag, :article => self
     end
+  end
+  
+  def tag_slugs
+    array = self.taggings.inject([]) do |slugs, tagging|
+      slugs << tagging.tag.slug
+    end
+    array.join ' '
   end
   
   def self.find_recent options={}

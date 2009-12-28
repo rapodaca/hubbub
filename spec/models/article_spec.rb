@@ -32,6 +32,11 @@ describe Article do
     @article.tags.should be_empty
   end
   
+  it "has no tag slugs" do
+    do_create
+    @article.tag_slugs.should == ""
+  end
+  
   describe "#find_recent" do
     before(:each) do
       @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)
@@ -99,6 +104,11 @@ describe Article do
       describe "#tags" do
         it "returns three tags" do
           @article.taggings.inject([]) { |taggings, tagging| taggings << tagging.tag.slug }.should == ['one', 'two', 'three']
+        end
+      end
+      describe "#tag_slugs" do
+        it "returns one two three" do
+          @article.tag_slugs.should == "one two three"
         end
       end
     end

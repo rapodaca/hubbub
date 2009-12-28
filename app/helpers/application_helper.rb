@@ -3,4 +3,10 @@ module ApplicationHelper
   def config
     Hubbub::Config
   end
+  
+  def title page_title
+    @title = page_title
+    head = page_title.blank? ? "" : "#{page_title} - "
+    content_for(:title) { "#{head}#{config[:title]}" }
+  end
 end
