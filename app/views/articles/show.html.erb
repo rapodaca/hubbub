@@ -1,1 +1,11 @@
 <% title @article.title %>
+
+<% content_for(:admin) do %>
+  <ul>
+    <li class="first"><%= link_to 'Edit Article', edit_article_url(@article) %></li>
+    <li><%= link_to 'Delete Article', article_url(@article), :method => :delete, :confirm => 'Delete this article - are you sure?' %>
+    <li class="last"><%= link_to 'Logout', logout_url %></li>
+  </ul>
+<% end %>
+
+<%= render :partial => @article %>

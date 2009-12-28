@@ -3,3 +3,9 @@
 </h3>
 
 <%= article.body_html %>
+
+<ul>
+  <% for tag in article.tags %>
+    <li><%= tag.slug %></li>
+  <% end %>
+</ul>
