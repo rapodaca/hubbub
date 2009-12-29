@@ -17,6 +17,9 @@ describe TagsController do
   
   def do_index; get :index; end
   def do_show; get :show, :id => @tag.id; end
+  def do_update; put :update, :id => @tag.id; end
+  def do_edit; get :edit, :id => @tag.id; end
+  def do_destroy; delete :destroy, :id => @tag.id; end
   
   describe "GET index" do
     before(:each) do
@@ -42,6 +45,74 @@ describe TagsController do
     it "assigns articles" do
       do_show
       assigns[:articles].should == [@article]
+    end
+  end
+  
+  describe "PUT update" do
+    before(:each) do
+      mock_tag
+      find_tag
+    end
+    it "updates tag attributes" do
+      @tag.should_receive(:update_attributes).and_return true
+      do_update
+    end
+    describe "when successful" do
+      before(:each) do
+        @tag.stub!(:update_attributes).and_return(true)
+      end
+      it "flashes success" do
+        do_update
+        flash[:success].should_not be_nil
+      end
+      it "redirects to tag url" do
+        do_update
+        response.should redirect_to(tag_url(@tag))
+      end
+    end
+    describe "when unsuccessful" do
+      before(:each) do
+        @tag.stub!(:update_attributes).and_return(false)
+      end
+      it "renders new" do
+        do_update
+        response.should render_template(:edit)
+      end
+    end
+  end
+  
+  describe "GET edit" do
+    before(:each) do
+      mock_tag
+      find_tag
+    end
+    
+    it "assigns tag" do
+      do_edit
+      assigns[:tag].should == @tag
+    end
+  end
+  
+  describe "DELETE destroy" do
+    before(:each) do
+      mock_tag
+      find_tag
+      @tag.stub!(:destroy)
+    end
+    
+    it "destroys tag" do
+      @tag.should_receive(:destroy)
+      do_destroy
+    end
+    
+    it "flashes success" do
+      do_destroy
+      flash[:success].should_not be_blank
+    end
+    
+    it "redirects to tags url" do
+      do_destroy
+      response.should redirect_to(tags_url)
     end
   end
 end

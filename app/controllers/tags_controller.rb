@@ -9,11 +9,23 @@ class TagsController < ApplicationController
   end
 
   def update
+    @tag = Tag.find_by_slug! params[:id]
+    if @tag.update_attributes(params[:tag])
+      flash[:success] = "Tag updated."
+      redirect_to tag_url(@tag)
+    else
+      render :action => 'edit', :status => :unprocessable_entity
+    end
   end
 
   def edit
+    @tag = Tag.find_by_slug! params[:id]
   end
 
   def destroy
+    tag = Tag.find_by_slug! params[:id]
+    tag.destroy
+    flash[:success] = "Tag destroyed."
+    redirect_to tags_url
   end
 end

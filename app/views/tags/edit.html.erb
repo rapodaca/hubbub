@@ -1,2 +1,12 @@
-<h1>Tags#edit</h1>
-<p>Find me in app/views/tags/edit.html.erb</p>
+<% title "Edit Tag" %>
+
+<% content_for(:admin) do %>
+  <ul>
+    <li class="first"><%= link_to 'Show Tag', tag_url(@tag) %></li>
+    <li class="last"><%= link_to 'Logout', logout_url %></li>
+  </ul>
+<% end %>
+
+<h2 class="title"><%= @title %></h2>
+
+<%= render :partial => 'form' %>
