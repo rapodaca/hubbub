@@ -1,11 +1,15 @@
-<h3 class="title">
-  <%= link_to article.title, article_permalink_url(article) %>
-</h3>
+<div class="article">
+  <h3 class="title">
+    <%= link_to article.title, article_permalink_url(article) %>
+  </h3>
+  <div class="date">
+    <%= article.created_at %>
+  </div>
+  <%= article.body_html %>
 
-<%= article.body_html %>
-
-<ul>
-  <% for tag in article.tags %>
-    <li><%= link_to tag.slug, tag_url(tag) %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% for tag in article.tags %>
+      <li><%= link_to tag.slug, tag_url(tag) %></li>
+    <% end %>
+  </ul>
+</div>

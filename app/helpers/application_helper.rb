@@ -9,4 +9,8 @@ module ApplicationHelper
     head = page_title.blank? ? "" : "#{page_title} - "
     content_for(:title) { "#{head}#{config[:title]}" }
   end
+  
+  def pretty_date date
+    
+  end
 end

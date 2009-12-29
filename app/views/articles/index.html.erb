@@ -5,6 +5,10 @@
   </ul>
 <% end %>
 
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'articles' %>
+<% end %>
+
 <div class="articles">
   <%= render :partial => @articles %>
 </div>

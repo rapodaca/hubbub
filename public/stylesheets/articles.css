@@ -1,0 +1,4 @@
+.article {  }
+.article h3.title { font-size: 200%; margin-bottom: 0.3em; font-weight: normal; }
+.article h3.title a { text-decoration: none; color: black; }
+.article h3.title a:hover { text-decoration: underline; }
