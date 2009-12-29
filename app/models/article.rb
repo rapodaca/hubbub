@@ -1,8 +1,9 @@
 class Article < ActiveRecord::Base
-  before_validation :generate_slug
-  before_save :markdown_body
   validates_presence_of :title
   validates_presence_of :body
+  
+  marks_up :body
+  slugifies :title
   
   has_many :taggings
   has_many :tags, :through => :taggings
@@ -33,7 +34,7 @@ class Article < ActiveRecord::Base
   
   def self.find_by_permalink options={}
     begin
-      article = self.find_all_by_slug(options[:slug]).detect do |article|
+      article = self.find_all_by_title_slug(options[:slug]).detect do |article|
         time = article.created_at
         time.year == options[:year].to_i &&
         time.month == options[:month].to_i &&
@@ -44,38 +45,5 @@ class Article < ActiveRecord::Base
     end
 
     article || raise(ActiveRecord::RecordNotFound)
-  end
-  
-  private
-  
-  def markdown_body
-    self.body_html = RDiscount.new(body).to_html
-  end
-  
-  # See: http://stackoverflow.com/questions/1302022/best-way-to-generate-slugs-human-readable-ids-in-rails
-  def generate_slug
-    return if title.blank?
-    #strip the string
-    slug = title.strip.downcase
-    
-    slug = title.strip.downcase
-
-    #blow away apostrophes
-    slug.gsub! /['`]/,""
-
-    # @ --> at, and & --> and
-    slug.gsub! /\s*@\s*/, " at "
-    slug.gsub! /\s*&\s*/, " and "
-
-    #replace all non alphanumeric, underscore with dash
-    slug.gsub! /\s*[^A-Za-z0-9\-]\s*/, '-'  
-
-    #convert double dash to single
-    slug.gsub! /_+/,"-"
-
-    #strip off leading/trailing dashes
-    slug.gsub! /\A[-\.]+|[-\.]+\z/,""
-    
-    self.slug = slug
   end
 end

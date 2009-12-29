@@ -84,11 +84,11 @@ describe Article do
     end
   end
   
-  describe "#valid?" do
-    it "generates slug" do
+  describe "#save" do
+    it "generates title slug" do
       do_create
-      @article.valid?
-      @article.slug.should == 'a-tale-of-two-cities'
+      @article.save
+      @article.title_slug.should == 'a-tale-of-two-cities'
     end
   end
   

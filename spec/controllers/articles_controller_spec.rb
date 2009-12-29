@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ArticlesController do
   def mock_article
-    @article = mock_model(Article, :created_at => Time.now, :slug => 'foo')
+    @article = mock_model(Article, :created_at => Time.now, :title_slug => 'foo')
   end
   
   def new_article
@@ -28,7 +28,7 @@ describe ArticlesController do
   
   def article_permalink_url article
     time = article.created_at
-    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.slug}"
+    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.title_slug}"
   end
   
   def do_create; post :create, :article => {}; end

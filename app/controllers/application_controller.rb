@@ -33,6 +33,6 @@ class ApplicationController < ActionController::Base
   
   def article_permalink_url article
     time = article.created_at
-    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.slug}"
+    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.title_slug}"
   end
 end
