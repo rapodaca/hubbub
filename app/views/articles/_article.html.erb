@@ -6,6 +6,6 @@
 
 <ul>
   <% for tag in article.tags %>
-    <li><%= tag.slug %></li>
+    <li><%= link_to tag.slug, tag_url(tag) %></li>
   <% end %>
 </ul>

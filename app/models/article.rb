@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
   def tag_slugs=(slugs)
     slugs.split.each do |slug|
       tag = Tag.find_or_initialize_by_slug slug
+      next if self.tags.member? tag
       self.taggings.build :tag => tag, :article => self
     end
   end
