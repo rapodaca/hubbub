@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
   
   map.resources :articles
+  map.resources :tags
   map.resources :logins
 
   # Sample resource route within a namespace:

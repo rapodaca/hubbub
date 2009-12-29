@@ -1,0 +1,17 @@
+<% title "All Tags" %>
+
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'tags' %>
+<% end %>
+
+<% content_for(:admin) do %>
+  <ul>
+    <li class="only"><%= link_to 'Logout', logout_url %></li>
+  </ul>
+<% end %>
+
+<h2 class="title"><%= @title %></h2>
+
+<div class="tags">
+  <%= render :partial => @tags %>  
+</div>

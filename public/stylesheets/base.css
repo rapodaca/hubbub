@@ -10,6 +10,7 @@ object { margin-bottom: 1em; }
 #admin li { padding-left: 0.5em; border-left: 1px solid #cccccc; }
 #admin .first { padding-left: 0; border-left: 0px;}
 #admin .last { padding-right: 0; }
+#admin .only { padding-left: 0; padding-right: 0; border-left: 0px; border-right: 0px; }
 #admin a { color: white; text-decoration: none; }
 #admin a:hover { text-decoration: underline; }
 
