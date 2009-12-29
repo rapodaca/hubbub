@@ -1,2 +1,13 @@
-<h1>Pages#edit</h1>
-<p>Find me in app/views/pages/edit.html.erb</p>
+<% title "Edit Page" %>
+
+<% content_for(:admin) do %>
+  <ul>
+    <li class="first"><%= link_to 'All Pages', pages_url %></li>
+    <li><%= link_to 'View Page', page_url(@page) %>
+    <li class="last"><%= link_to 'Logout', logout_url %></li>
+  </ul>
+<% end %>
+
+<h2 class="title"><%= @title %></h2>
+
+<%= render :partial => 'form' %>

@@ -14,5 +14,5 @@
 <h2 class="title"><%= @title %></h2>
 
 <div class="pages">
-  <%= render :partial => @pages %>  
+  <%= render :partial => @pages, :locals => {:summary => true} %>  
 </div>

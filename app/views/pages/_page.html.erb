@@ -1,0 +1,17 @@
+<div class="page">
+  <% if defined?(summary) %>
+    <div class="head">
+      <h3 class="title">
+        <%= link_to page.title, page_url(page) %>
+      </h3>
+      <div class="date">
+        <%= page.created_at.strftime("%A %B %d, %Y") %>
+      </div>
+    </div>
+  <% end %>
+  <% unless defined?(summary) %>
+    <div class="body">
+      <%= page.body_html %>      
+    </div>
+  <% end %>
+</div>
