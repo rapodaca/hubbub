@@ -1,0 +1,17 @@
+<% title @page.title %>
+
+<% content_for(:admin) do %>
+  <ul>
+    <li class="first"><%= link_to 'Edit Page', edit_page_url(@page) %></li>
+    <li><%= link_to 'Delete Page', page_url(@page), :method => :delete, :confirm => 'Delete this page - are you sure?' %>
+    <li class="last"><%= link_to 'Logout', logout_url %></li>
+  </ul>
+<% end %>
+
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'pages' %>
+<% end %>
+
+<h2 class="title"><%= @title %></h2>
+
+<%= render :partial => @page %>

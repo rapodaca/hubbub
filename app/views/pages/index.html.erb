@@ -1,0 +1,18 @@
+<% title "All Pages" %>
+
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'pages' %>
+<% end %>
+
+<% content_for(:admin) do %>
+  <ul>
+    <li class="first"><%= link_to 'New Page', new_page_url %></li>
+    <li class="last"><%= link_to 'Logout', logout_url %></li>
+  </ul>
+<% end %>
+
+<h2 class="title"><%= @title %></h2>
+
+<div class="pages">
+  <%= render :partial => @pages %>  
+</div>

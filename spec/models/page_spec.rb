@@ -19,6 +19,12 @@ describe Page do
     it "is valid" do
       @page.should be_valid
     end
+    describe "#to_param" do
+      it "returns title_slug" do
+        @page.valid?
+        @page.to_param.should == 'lorum-ipsum'
+      end
+    end
     
     describe "#save" do
       before(:each) do

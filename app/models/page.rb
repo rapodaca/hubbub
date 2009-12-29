@@ -4,4 +4,8 @@ class Page < ActiveRecord::Base
   
   marks_up :body
   slugifies :title
+  
+  def to_param
+    title_slug
+  end
 end
