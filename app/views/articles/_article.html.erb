@@ -1,15 +1,30 @@
 <div class="article">
-  <h3 class="title">
-    <%= link_to article.title, article_permalink_url(article) %>
-  </h3>
-  <div class="date">
-    <%= article.created_at %>
+  <div class="head">
+    <div class="right">
+      <h3 class="title">
+        <%= link_to article.title, article_permalink_url(article) %>
+      </h3>
+      <div class="date">
+        <%= article.created_at.strftime("%A %B %d, %Y") %>
+      </div>
+    </div>
   </div>
-  <%= article.body_html %>
-
-  <ul>
-    <% for tag in article.tags %>
-      <li><%= link_to tag.slug, tag_url(tag) %></li>
-    <% end %>
-  </ul>
+  <div class="body">
+    <div class="right">
+      <%= article.body_html %>      
+    </div>
+  </div>
+  <div class="meta">
+    <div class="right">
+      <div class="tags">
+        Tags:&nbsp;
+        <ul>
+          <% for tag in article.tags %>
+            <li><%= link_to tag.slug, tag_url(tag) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br style="clear: both;" />
 </div>

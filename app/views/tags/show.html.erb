@@ -8,6 +8,10 @@
   </ul>
 <% end %>
 
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'articles' %>
+<% end %>
+
 <h2 class="title"><%= @title %></h2>
 
 <%= render :partial => @articles %>

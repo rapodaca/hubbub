@@ -67,8 +67,8 @@ class Article < ActiveRecord::Base
     slug.gsub! /\s*@\s*/, " at "
     slug.gsub! /\s*&\s*/, " and "
 
-    #replace all non alphanumeric, underscore or periods with dash
-    slug.gsub! /\s*[^A-Za-z0-9\.\-]\s*/, '-'  
+    #replace all non alphanumeric, underscore with dash
+    slug.gsub! /\s*[^A-Za-z0-9\-]\s*/, '-'  
 
     #convert double dash to single
     slug.gsub! /_+/,"-"

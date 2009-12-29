@@ -20,6 +20,8 @@ object { margin-bottom: 1em; }
 #copyright { margin-bottom: 2em; font-size: 90%; }
 
 .main { width: 960px; margin-left: auto; margin-right: auto; }
+.right { width: 630px; float: right;}
+.left { width: 280px; }
 .section { border-bottom: 1px dotted gray; margin-bottom: 1em; padding-bottom: 1em; }
 
 h1.site-id { font-size: 190%; }
