@@ -87,7 +87,7 @@ describe ArticlesController do
       end
       it "flashes success" do
         do_create
-        flash[:success].should_not be_blank
+        flash[:message].should_not be_blank
       end
       it "redirects to article permalink url" do
         do_create

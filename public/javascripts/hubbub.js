@@ -1,11 +1,15 @@
 Hubbub = { }
 
-Hubbub.isLoggedIn = function () {
-  return $.cookie('user_credentials') !== null;
-};
+// Hubbub.isLoggedIn = function () {
+//   return $.cookie('user_credentials') !== null;
+// };
 
 $(document).ready(function() {
-  if (Hubbub.isLoggedIn()) {
-    $('#admin').show();
+  // display humanized Rails flash messages
+  
+  var message = null;
+  if ($('#message')) {
+    message = $('#message').text();
+    humanMsg.displayMsg(message);
   }
 });

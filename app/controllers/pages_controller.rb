@@ -1,10 +1,6 @@
 class PagesController < ApplicationController
   make_resourceful do
     actions :all
-    
-    after :create do
-      flash[:success] = "Created page."
-    end
   end
   
   private

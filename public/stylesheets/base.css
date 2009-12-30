@@ -2,9 +2,11 @@ body { font-family: Georgia, 'Hiragino Mincho Pro', serif; }
 pre { margin-bottom: 1em; }
 object { margin-bottom: 1em; }
 
+#message { display: none; }
+
 #container { margin-top: 2em;}
 
-#admin { display: none; background-color: black; color: white;
+#admin { background-color: black; color: white;
   padding: 0.3em 0 0.3em 0; font-family: Helvetica, sans-serif;
   font-size: 90%; text-align: right; }
 #admin li { padding-left: 0.5em; border-left: 1px solid #cccccc; }

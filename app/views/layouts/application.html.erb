@@ -7,15 +7,21 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
     <title><%= yield(:title) %></title>
-    <%= stylesheet_link_tag 'resets', 'base', 'formtastic', 'formtastic_changes' %>
+    <%= stylesheet_link_tag 'resets', 'base', 'formtastic', 'formtastic_changes', 'humanmsg' %>
     <%= javascript_include_tag 'jquery' %>
     <%= javascript_include_tag 'jquery_cookies' %>
+    <%= javascript_include_tag 'humanmsg' %>
     <%= javascript_include_tag 'hubbub' %>
     <link rel="icon" type="image/png" href="/favicon.png">
     <%= yield(:head) %>
   </head>
   <body>
-    <% if admin_menu = yield(:admin) %>
+    <% if flash[:notice] %>
+      <div id="message">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if current_user && (admin_menu = yield(:admin)) %>
       <div id="admin">
         <div class="main">
           <%= admin_menu %>
