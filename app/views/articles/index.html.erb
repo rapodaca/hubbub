@@ -9,6 +9,7 @@
 
 <% content_for(:head) do %>
   <%= stylesheet_link_tag 'articles' %>
+  <%= auto_discovery_link_tag(:atom, articles_url(:format => 'atom')) %>
 <% end %>
 
 <div class="articles">
