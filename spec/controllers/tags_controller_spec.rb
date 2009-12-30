@@ -30,6 +30,12 @@ describe TagsController do
       do_index
       assigns[:tags].should == [@tag]
     end
+    describe "as atom" do
+      it "returns atom content" do
+        get :index, :format => 'atom'
+        response.content_type.should == 'application/atom+xml'
+      end
+    end
   end
   
   describe "GET show" do
@@ -63,7 +69,7 @@ describe TagsController do
       end
       it "flashes success" do
         do_update
-        flash[:success].should_not be_nil
+        flash[:notice].should_not be_nil
       end
       it "redirects to tag url" do
         do_update
@@ -107,7 +113,7 @@ describe TagsController do
     
     it "flashes success" do
       do_destroy
-      flash[:success].should_not be_blank
+      flash[:notice].should_not be_blank
     end
     
     it "redirects to tags url" do

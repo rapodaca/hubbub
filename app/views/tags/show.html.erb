@@ -10,8 +10,9 @@
 
 <% content_for(:head) do %>
   <%= stylesheet_link_tag 'articles' %>
+  <%= auto_discovery_link_tag(:atom, tag_url(@tag, :format => 'atom')) %>
 <% end %>
 
 <h2 class="title"><%= @title %></h2>
 
-<%= render :partial => @articles %>
+<%= render :partial => @articles, :locals => { :summary => true } %>

@@ -3,7 +3,7 @@ atom_feed(
   :root_url    => root_url,
   :schema_date => '2008'
 ) do |feed|
-  feed.title     Hubbub::Config[:title]
+  feed.title     Hubbub::Config[:title] + ' - Articles Tagged ' + @tag.slug
   feed.updated   @articles.empty? ? Time.now.utc : @articles.collect(&:updated_at).max
   feed.generator "Hubbub", "uri" => "http://github.com/rapodaca/hubbub"
 
