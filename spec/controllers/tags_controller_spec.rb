@@ -1,4 +1,5 @@
 require 'spec_helper'
+require File.expand_path(File.dirname(__FILE__) + '/shared/protected_controller_spec')
 
 describe TagsController do
   def mock_tag
@@ -16,6 +17,10 @@ describe TagsController do
     @article = mock_model(Article)
     @tag.stub!(:recent_articles).and_return [@article]
   end
+  
+  authenticated_actions [:update, :edit, :destroy]
+  public_actions [:index, :show]
+  it_should_behave_like "a protected controller"
   
   describe "GET index" do
     it "assigns tags" do

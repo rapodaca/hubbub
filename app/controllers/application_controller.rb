@@ -20,6 +20,19 @@ class ApplicationController < ActionController::Base
     Hubbub::Config[:publisher][:redirect]
   end
   
+  def require_user
+    unless current_user
+      store_location
+      flash[:warning] = "Please login or create an account first."
+      redirect_to '/login'
+      return false
+    end
+  end
+
+  def store_location
+    session[:return_to] = request.request_uri
+  end
+  
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = login && login.user

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_filter :require_user, :only => [:create, :new, :update, :edit, :destroy]
   def index
     respond_to do |format|
       @articles = Article.find_recent(:page => params[:page])

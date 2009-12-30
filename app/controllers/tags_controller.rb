@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+  before_filter :require_user, :only => [:update, :edit, :destroy]
+  
   make_resourceful do
     actions :index, :update, :edit, :destroy
   end

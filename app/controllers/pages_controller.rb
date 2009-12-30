@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :require_user, :only => [:create, :new, :update, :edit, :destroy]
+  
   make_resourceful do
     actions :all
   end

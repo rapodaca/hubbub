@@ -1,4 +1,5 @@
 require 'spec_helper'
+require File.expand_path(File.dirname(__FILE__) + '/shared/protected_controller_spec')
 
 describe ArticlesController do
   def mock_article
@@ -31,12 +32,22 @@ describe ArticlesController do
     articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.title_slug}"
   end
   
+  def login
+    @user = mock_model(User)
+    @user_session = mock_model(UserSession, :user => @user)
+    UserSession.stub!(:find).and_return @user_session
+  end
+  
   def do_create; post :create, :article => {}; end
   def do_show; get :show, :id => @article.id; end
   def do_new; get :new; end
   def do_update; put :update, :id => @article.id; end
   def do_edit; get :edit, :id => @article.id; end
   def do_destroy; delete :destroy, :id => @article.id; end
+  
+  authenticated_actions [:create, :new, :update, :edit, :destroy]
+  public_actions [:index, :show]
+  it_should_behave_like "a protected controller"
   
   describe "GET index" do
     before(:each) do
@@ -80,6 +91,7 @@ describe ArticlesController do
     before(:each) do
       mock_article
       new_article
+      login
     end
     describe "when successful" do
       before(:each) do
@@ -113,6 +125,7 @@ describe ArticlesController do
     before(:each) do
       mock_article
       new_article
+      login
     end
     it "assigns article" do
       do_new
@@ -139,6 +152,7 @@ describe ArticlesController do
     before(:each) do
       mock_article
       find_article
+      login
     end
     describe "when successful" do
       before(:each) do
@@ -172,6 +186,7 @@ describe ArticlesController do
     before(:each) do
       mock_article
       find_article
+      login
     end
     it "assigns article" do
       do_edit
@@ -184,6 +199,7 @@ describe ArticlesController do
       mock_article
       @article.stub!(:destroy).and_return(true)
       find_article
+      login
     end
     it "redirects to articles url" do
       do_destroy
