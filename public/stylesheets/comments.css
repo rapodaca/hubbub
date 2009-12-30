@@ -1,6 +1,7 @@
 #dsq-content { font-size: 16px !important; }
 .dsq-comment-footer { padding-bottom: 1em !important; margin-bottom: 1em !important; border-bottom: 1px dotted gray !important;}
 .dsq-comment-header { margin-bottom: 1em !important;}
+.dsq-comment-message { margin-bottom: 1em !important; }
 .dsq-post-avatar { margin-right: 1em !important;}
 .dsq-authenticated-info li { margin-bottom: 0.7em !important;}
 h3.dsq-h3-addcomment { display: none; }
