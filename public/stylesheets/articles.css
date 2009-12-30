@@ -2,8 +2,11 @@
 .article h3.title { font-size: 200%; margin-bottom: 0.3em; font-weight: normal; }
 .article h3.title a { text-decoration: none; color: black; }
 .article h3.title a:hover { text-decoration: underline; }
+.article h4 { margin-bottom: 1em; }
 .article .date { font-style: italic; font-size: 90%; margin-bottom: 2em; }
 .article p { margin-bottom: 1em; line-height: 1.5em; }
 
 .article .tags { }
 .article .tags ul { display: inline; }
+
+.comments-heading { text-align: right; font-size: 150%;}
