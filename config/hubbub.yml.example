@@ -13,3 +13,6 @@ title: Hubbub
 
 # Page limit
 articles_per_page: 10
+
+# Disqus forum name
+disqus_forum: depth-first
