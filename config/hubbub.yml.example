@@ -5,6 +5,9 @@
 # Blog title
 title: Hubbub
 
+# Blog url
+# site_url: http://example.com
+
 # Uncomment to enable a feed publisher to handle atom requests
 # user requests
 # publisher:
