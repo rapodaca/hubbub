@@ -14,5 +14,5 @@ title: Hubbub
 # Page limit
 articles_per_page: 10
 
-# Disqus forum name
-disqus_forum: depth-first
+# Uncomment to enable Disqus, using your own forum name.
+# disqus_forum: your-forum-name-here

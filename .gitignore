@@ -4,5 +4,6 @@ log
 tmp/**/*
 tmp
 config/database.yml
+config/hubbub.yml
 db/schema.rb
 db/*.sqlite3
