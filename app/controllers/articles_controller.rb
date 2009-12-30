@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
     
     if @article.save
-      flash[:message] = "Success: created article."
+      flash[:notice] = "Success: created article."
       redirect_to(article_permalink_url(@article))
     else
       render :action => 'new', :status => :unprocessable_entity
@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
     @article = Article.find params[:id]
     
     if @article.update_attributes(params[:article])
-      flash[:success] = "Article updated."
+      flash[:notice] = "Article updated."
       redirect_to article_url(@article)
     else
       render :action => 'edit', :status => :unprocessable_entity
