@@ -1,6 +1,6 @@
 <%= error_messages_for(:user_session) %>
 
-<% form_for @user_session, :url => logins_path do |f| %>
+<% form_for @user_session do |f| %>
   <fieldset>
     <%= f.text_field :openid_identifier %>
     <%= f.submit 'Login with OpenID' %>

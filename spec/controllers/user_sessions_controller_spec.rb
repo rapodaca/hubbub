@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe LoginsController do
+describe UserSessionsController do
   def mock_user_session
     @user_session = mock_model(UserSession)
   end

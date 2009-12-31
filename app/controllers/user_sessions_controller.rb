@@ -1,9 +1,8 @@
-class LoginsController < ApplicationController
+class UserSessionsController < ApplicationController
   layout 'login'
   
   def create
-    @user_session = UserSession.new :openid_identifier =>
-      params[:user_session] ? params[:user_session][:openid_identifier] : nil
+    @user_session = UserSession.new params[:user_session]
     
     @user_session.save do |result|
       if result
