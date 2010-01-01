@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'articles'
+  map.root :controller => 'home'
   
   map.resources :articles
   map.resources :tags
