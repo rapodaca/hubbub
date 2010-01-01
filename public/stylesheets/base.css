@@ -53,3 +53,4 @@ object { margin-bottom: 1em; }
 #navigation .items { margin-top: 8px;}
 #navigation .items li {display: block; margin-bottom: 0.5em;}
 
+h3.page-title { margin-bottom: 2em; font-weight: normal; font-size: 120%;}

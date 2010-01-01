@@ -11,8 +11,11 @@
   </ul>
 <% end %>
 
-<h2 class="title"><%= @title %></h2>
+<h3 class="page-title"><%= @title %></h2>
 
 <div class="pages">
-  <%= render :partial => @pages, :locals => {:summary => true} %>  
+  <div class="right">
+    <%= render :partial => @pages, :locals => {:summary => true} %> 
+  </div>
+  <br style="clear: both;" />
 </div>
