@@ -1,0 +1,32 @@
+<%# add links to your pages here %>
+
+<ul class="groups">
+  <li class="group first-child">
+    <span class="category">blog</span>
+    <ul class="items">
+      <li><%= link_to 'Feed', articles_url(:atom) %></li>
+      <li><%= link_to 'Tags', tags_url %></li>
+    </ul>
+  </li>
+  <li class="group">
+    <span class="category">Articles</span>
+    <ul class="items">
+      <li><%= link_to 'Popular', root_url %></li>
+      <li><%= link_to 'Series', root_url %></li>          
+    </ul>
+  </li>
+  <li class="group">
+    <span class="category">work</span>
+    <ul class="items">
+      <li><%= link_to 'Projects', root_url %></li>
+      <li><%= link_to 'Company', root_url %></li>
+    </ul>
+  </li>
+  <li class="group">
+    <span class="category">author</span>
+    <ul class="items">
+      <li><%= link_to 'About', root_url %></li>
+      <li><%= link_to 'Contact', root_url %></li>
+    </ul>
+  </li>
+</ul>

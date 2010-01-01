@@ -1,1 +1,11 @@
-<h1 class="site-id"><%= link_to config[:title], root_url %></h1>
+<div id="navigation">
+  <div class="right">
+    <%= render :partial => 'shared/navigation' %>
+  </div>
+</div>
+<div id="site-id">
+  <div class="left">
+    <%= render :partial => 'shared/site_id' %>    
+  </div>
+</div>
+<br style="clear: both;" />

@@ -16,7 +16,7 @@ object { margin-bottom: 1em; }
 #admin a { color: white; text-decoration: none; }
 #admin a:hover { text-decoration: underline; }
 
-#header {  }
+#header { margin-bottom: 2.3em; }
 #body { padding-bottom: 5em; }
 #footer { margin-bottom: 1em; padding-bottom: 1.5em; font-size: 90%; }
 
@@ -37,7 +37,19 @@ object { margin-bottom: 1em; }
 
 .pagination { text-align: center; }
 
-h1.site-id { font-size: 190%; }
-h1.site-id a { color: black; text-decoration: none; }
+#site-id { }
+#site-id h1.title { font-size: 210%; margin-bottom: 0.1em; }
+#site-id h1 a {  color: black; text-decoration: none; }
+#site-id h2.tagline { font-weight: normal; font-style: italic;}
 
-h2.title { margin-bottom: 1em; font-size: 130%; }
+#navigation { font-size: 90%; }
+#navigation a { color: black; text-decoration: none; }
+#navigation a:hover { text-decoration: underline; }
+#navigation .site-id { margin-top: 20px;}
+#navigation .group {  }
+#navigation li.group { display: block; float: left; width: 120px;  margin-left: 50px; }
+#navigation li.first-child { margin-left: 0; }
+#navigation .category { text-transform: uppercase; color: #CC0000; letter-spacing: 0.1em; }
+#navigation .items { margin-top: 8px;}
+#navigation .items li {display: block; margin-bottom: 0.5em;}
+
