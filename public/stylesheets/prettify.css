@@ -1,0 +1,21 @@
+pre.prettyprint { 
+  background-color: #232323;
+  color: #cccccc;
+  display: block;
+  padding: 5px; 
+  overflow: scroll;
+  width: 95%;
+  font-family: 'lucida console', 'Courier New', monospace;
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+.prettyprint .str, .prettyprint .atv{color: #a5c261;}
+.prettyprint .kwd,.prettyprint .tag { color: #CC7833;  }
+.prettyprint .com{color: #bc9457; font-style: italic;}
+.prettyprint .typ { color: #cccccc; }
+.prettyprint .atn,.prettyprint .dec{ color: #aaaaff;}
+.prettyprint .lit{color: #7BB;}
+.prettyprint .pun{color: #cccccc; font-weight: bold;}
+.prettyprint .pln{color: #cccccc; font-weight: normal; }
+

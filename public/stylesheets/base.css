@@ -53,7 +53,7 @@ object { margin-bottom: 1em; }
 #navigation .items { margin-top: 8px;}
 #navigation .items li {display: block; margin-bottom: 0.5em;}
 
-h3.page-title { margin-bottom: 1em; font-weight: bold; font-size: 180%;}
+h3.page-title { margin-bottom: 1em; font-weight: normal; font-size: 180%;}
 
 .infobox { padding-right: 2em;  font-size: 90%;}
 .infobox h3.title { margin-bottom: 1em; font-size: 110%;}

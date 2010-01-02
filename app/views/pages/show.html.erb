@@ -11,13 +11,18 @@
 
 <% content_for(:head) do %>
   <%= stylesheet_link_tag 'pages' %>
+  <%= render :partial => 'pages/head/show' %>
 <% end %>
 
-<div class="page">
-  <div class="right">
-    <h3 class="page-title"><%= @title %></h3>
-    <%= render :partial => @page %>
-  </div>
-  <br style="clear: both;" />  
+<% content_for(:scripts) do %>
+  <%= render :partial => 'pages/scripts/show' %>
+<% end %>
+
+<div class="right">
+  <h3 class="page-title"><%= @title %></h3>
 </div>
+<div class="right">
+  <%= render :partial => @page %>
+</div>
+<br style="clear: both;" />
 

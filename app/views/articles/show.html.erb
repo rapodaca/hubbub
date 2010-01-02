@@ -9,28 +9,13 @@
 <% end %>
 
 <% content_for(:head) do %>
-  <%= stylesheet_link_tag 'articles' %>
+  <%= stylesheet_link_tag 'articles', 'comments'  %>
+  <%= render :partial => 'articles/head/show' %>
+<% end %>
+
+<% content_for(:scripts) do %>
+  <%= render :partial => 'articles/scripts/show' %>
 <% end %>
 
 <%= render :partial => @article %>
-
-<div class="comments">
-  <div class="right">
-    <% if request.host == 'localhost' %>
-      <script>var disqus_developer=1</script>
-    <% end %>
-    <% if forum = Hubbub::Config[:disqus_forum] %>
-<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/<%= forum %>/embed.js"></script><noscript><a href="http://disqus.com/forums/<%= forum %>/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-    <% else %>
-      <p>
-        To enable comments, set the 'disqus_forum' field in your 'hubbub.yml'
-        file and restart your server.
-      </p>
-    <% end %>
-  </div>
-  <div class="left">
-    <div class="comments-heading">Comments</div>
-  </div>
-</div>
-
-<br style="clear: both;" />
+<%= render :partial => 'articles/comments' %>

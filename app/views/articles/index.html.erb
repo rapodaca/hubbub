@@ -14,6 +14,10 @@
   <%= auto_discovery_link_tag(:atom, articles_url(:format => 'atom')) %>
 <% end %>
 
+<% content_for(:scripts) do %>
+  <%= render :partial => 'shared/disqus' %>
+<% end %>
+
 <div class="right">
   <h3 class="page-title"><%= @title %></h3>
 </div>
