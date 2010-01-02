@@ -35,7 +35,7 @@ describe ArticlesController do
   
   def article_permalink_url article
     time = article.created_at
-    articles_url + "/#{time.year}/#{time.month}/#{time.day}/#{article.title_slug}"
+    articles_url + "/#{time.year}/#{"%02d" % time.month}/#{"%02d" % time.day}/#{article.title_slug}"
   end
   
   def login
