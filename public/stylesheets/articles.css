@@ -5,7 +5,7 @@
 .article h4 { margin-bottom: 1em; }
 .article .date { font-style: italic; font-size: 90%; margin-bottom: 2em; }
 .article p { margin-bottom: 1em; line-height: 1.5em; }
-.article blockquote { margin-left: 2em; padding-left: 1em; border-left: 0.5em solid #aaaaaa;}
+.article blockquote { margin-left: 2em; padding-left: 1em; border-left: 0.5em solid #aaaaaa; margin-bottom: 1.5em; }
 .article blockquote p { color: #444444;}
 .article .body ul, .article .body ol { margin-bottom: 1em; }
 .article .body ul li { display: list-item; list-style-type: disc; margin-bottom: 0.5em; margin-left: 2em; line-height: 1.3em;}
