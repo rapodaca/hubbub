@@ -1,5 +1,6 @@
 class Tag < ActiveRecord::Base
   validates_presence_of :slug
+  validates_format_of :slug, :with => /^[0-9a-zA-z\-]+$/
   
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :articles

@@ -42,6 +42,14 @@ describe Tag do
     Tag.create!(@atts)
   end
   
+  describe "with a slug containing a period" do
+    it "is invalid" do
+      @atts[:slug] = 'web2.0'
+      do_create
+      @tag.should_not be_valid
+    end
+  end
+  
   describe "#to_param" do
     it "returns slug" do
       do_create

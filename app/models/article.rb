@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
+  validate :valid_tags?
   
   marks_up :body
   slugifies :title
@@ -48,5 +49,15 @@ class Article < ActiveRecord::Base
     end
 
     article || raise(ActiveRecord::RecordNotFound)
+  end
+  
+  private
+  
+  def valid_tags?
+    taggings.each do |tagging|
+      unless tagging.tag.valid?
+        errors.add(:tag_slugs, "contains an invalid tag '#{tagging.tag.slug}'")
+      end
+    end
   end
 end

@@ -37,23 +37,6 @@ describe Article do
     @article.tag_slugs.should == ""
   end
   
-  # describe "#find_recent" do
-  #   before(:each) do
-  #     @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)
-  #     @second = Article.create!(:title => 'Second', :body => 'Second article.', :created_at => 2.day.ago)
-  #     @third = Article.create!(:title => 'Third', :body => 'Third article.', :created_at => 3.day.ago)
-  #   end
-  #   describe "limit two per page" do
-  #     before(:each) do
-  #       Hubbub::Config.stub!(:[]).with(:articles_per_page).and_return(2)
-  #     end
-  #     it "returns last article" do
-  #       articles = Article.find_recent :page => 1
-  #       articles.should == [@first, @second]
-  #     end
-  #   end
-  # end
-  
   describe "with three saved articles" do
     before(:each) do
       @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)
@@ -144,6 +127,17 @@ describe Article do
         it "returns one two three" do
           @article.tag_slugs.should == "one two three"
         end
+      end
+    end
+    
+    describe "with one period-containing tag" do
+      before(:each) do
+        @atts[:tag_slugs] = 'web2.0'
+        do_create
+      end
+      it "is invalid" do
+        # @article.taggings.first.tag.should_not be_valid
+        @article.should_not be_valid
       end
     end
   end
