@@ -1,0 +1,13 @@
+<div class="item">
+  <div class="right section">
+    <div class="title">
+      <%= link_to page.title, page_url(page) %>
+    </div>
+  </div>
+  <div class="date">
+    <div class="left">
+      <%= page.created_at.strftime("%A %B %d, %Y") %>    
+    </div>
+  </div>
+  <br style="clear: both;" />
+</div>

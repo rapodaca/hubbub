@@ -1,0 +1,25 @@
+<div class="item">
+  <div class="right section">
+    <div class="title">
+      <%= link_to article.title, article_permalink_url(article) %>
+    </div>
+    <div class="meta">
+      Tags:&nbsp;
+      <ul>
+        <% for tag in article.tags %>
+          <li><%= link_to tag.slug, tag_url(tag) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="meta">
+      Community:&nbsp;
+      <%= link_to 'Comments and Reactions', article_permalink_url(article) + '#disqus_thread' %>
+    </div>
+  </div>
+  <div class="date">
+    <div class="left">
+      <%= article.created_at.strftime("%A %B %d, %Y") %>    
+    </div>
+  </div>
+  <br style="clear: both;" />
+</div>

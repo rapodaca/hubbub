@@ -53,4 +53,12 @@ object { margin-bottom: 1em; }
 #navigation .items { margin-top: 8px;}
 #navigation .items li {display: block; margin-bottom: 0.5em;}
 
-h3.page-title { margin-bottom: 2em; font-weight: bold; font-size: 120%;}
+h3.page-title { margin-bottom: 1em; font-weight: bold; font-size: 180%;}
+
+.infobox { padding-right: 2em;  font-size: 90%;}
+.infobox h3.title { margin-bottom: 1em; font-size: 110%;}
+.infobox ul { margin-bottom: 2em; }
+.infobox ul li { display: block; margin-bottom: 0.7em; line-height: 1.2em;}
+.infobox a { color: black; text-decoration: none; }
+.infobox a:hover{ text-decoration: underline; }
+.infobox .more { text-align: right; }

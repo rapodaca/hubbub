@@ -7,7 +7,17 @@
 .article p { margin-bottom: 1em; line-height: 1.5em; }
 
 .article .meta { font-size: 90%; }
-.article .meta .item { margin-bottom: 0.3em; }
+.article .meta .item{ margin-bottom: 0.3em; }
 .article .meta .item ul { display: inline; }
 
 .comments-heading { text-align: right; font-size: 150%;}
+
+.articles { }
+.articles .item { padding-bottom: 1em;}
+.articles .item .title { font-size: 150%; margin-bottom: 0.5em;}
+.articles .item .title a { text-decoration: none; color: black; }
+.articles .item .title a:hover { text-decoration: underline; }
+.articles .item .date { text-align: right; font-style: italic; font-size: 90%; }
+.articles .item .meta { font-size: 90%; margin-bottom: 0.5em; }
+.articles .item .meta ul { display: inline; }
+.articles .item .meta li { margin-right: 0.5em; }

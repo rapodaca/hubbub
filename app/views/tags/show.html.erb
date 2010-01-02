@@ -1,4 +1,4 @@
-<% title "Articles Tagged '#{@tag.slug}'"%>
+<% title "Articles Tagged \"#{@tag.slug}\""%>
 
 <% content_for(:admin) do %>
   <ul>
@@ -13,8 +13,13 @@
   <%= auto_discovery_link_tag(:atom, tag_url(@tag, :format => 'atom')) %>
 <% end %>
 
-<h3 class="page-title"><%= @title %></h3>
-
-<%= render :partial => @articles, :locals => { :summary => true } %>
-
-<%= render :partial => 'articles/pagination' %>
+<div class="right">
+  <h3 class="page-title"><%= @title %></h3>
+</div>
+<br style="clear: both;" />
+<div class="articles">
+  <% for article in @articles %>
+    <%= render :partial => 'articles/item', :locals => { :article => article }%>    
+  <% end %>
+</div>
+<br style="clear: both;" />

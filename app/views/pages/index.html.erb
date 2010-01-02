@@ -1,4 +1,4 @@
-<% title "All Pages" %>
+<% title "Pages" %>
 
 <% content_for(:head) do %>
   <%= stylesheet_link_tag 'pages' %>
@@ -11,11 +11,14 @@
   </ul>
 <% end %>
 
-<h3 class="page-title"><%= @title %></h3>
-
-<div class="pages">
-  <div class="right">
-    <%= render :partial => @pages, :locals => {:summary => true} %> 
-  </div>
-  <br style="clear: both;" />
+<div class="right">
+  <h3 class="page-title"><%= @title %></h3>
 </div>
+<br style="clear: both;" />
+<div class="pages">
+  <% for page in @pages %>
+    <%= render :partial => 'pages/item', :locals => { :page => page } %>    
+  <% end %>
+</div>
+
+

@@ -26,7 +26,8 @@ class Article < ActiveRecord::Base
   def self.find_recent options={}
     options = {
       :order => 'created_at DESC',
-      :per_page => Hubbub::Config[:articles_per_page]
+      :per_page => options.delete(:per_page) || Hubbub::Config[:articles_per_page],
+      :page => options.delete(:page) || 1
     }.merge(options)
     
     self.paginate options

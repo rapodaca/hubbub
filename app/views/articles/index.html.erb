@@ -1,3 +1,5 @@
+<% title "Articles" %>
+
 <% content_for(:admin) do %>
   <ul>
     <li class="first"><%= link_to 'New Article', new_article_url %></li>
@@ -12,9 +14,15 @@
   <%= auto_discovery_link_tag(:atom, articles_url(:format => 'atom')) %>
 <% end %>
 
-<div class="articles">
-  <%= render :partial => @articles, :locals => { :summary => true } %>
+<div class="right">
+  <h3 class="page-title"><%= @title %></h3>
 </div>
+<br style="clear: both;" />
+<div class="articles">
+  <% for article in @articles %>
+    <%= render :partial => 'articles/item', :locals => { :article => article }%>    
+  <% end %>
+</div>
+<br style="clear: both;" />
 
-<%= render :partial => 'articles/pagination' %>
 

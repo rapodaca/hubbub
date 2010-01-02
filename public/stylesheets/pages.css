@@ -4,3 +4,10 @@
 .page h3.title a:hover { text-decoration: underline; }
 .page .date { font-style: italic; font-size: 90%; margin-bottom: 2em; }
 .page p { margin-bottom: 1em; line-height: 1.5em; }
+
+.pages { }
+.pages .item { padding-bottom: 1em;}
+.pages .item .title { font-size: 150%; margin-bottom: 0.5em;}
+.pages .item .title a { text-decoration: none; color: black; }
+.pages .item .title a:hover { text-decoration: underline; }
+.pages .item .date { text-align: right; font-style: italic; font-size: 90%; }

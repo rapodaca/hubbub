@@ -1,0 +1,17 @@
+<div class="infobox">
+  <h3 class="title">Recent Articles</h3>
+  <% if @recent_articles.empty? %>
+    <p>
+      No recent articles yet.      
+    </p>
+  <% else %>
+    <ul>
+      <% for article in @recent_articles %>
+        <li><%= link_to article.title, article_permalink_url(article) %>
+      <% end %>
+    </ul>
+    <p class="more">
+      <%= link_to 'Show all&nbsp;»', articles_url %>
+    </p>
+  <% end %>
+</div>
