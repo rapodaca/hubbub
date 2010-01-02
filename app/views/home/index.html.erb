@@ -14,9 +14,15 @@
 
 
 <div class="right">
+  <% if @recent_articles.empty? %>
+    <div class="right">
+      <p>No articles have been posted yet.</p>      
+    </div>
+  <% else %>
   <%=  render :partial => 'articles/article', :collection => @recent_articles, :locals => { :summary => true } %>
   <p>
     View all articles in the <%= link_to 'archives', articles_url %>.
   </p>
+  <% end %>
 </div>
 <br style="clear: both;" />

@@ -5,11 +5,28 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :login, :current_user, :article_permalink_url
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
+  # alias_method :rescue_action_locally, :rescue_action_in_public
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
   protected
+  
+  def render_optional_error_file(status_code)
+    if status_code == :not_found
+      render_404
+    else
+      super
+    end
+  end
+  
+  # See: http://henrik.nyh.se/2008/07/rails-404
+  def render_404
+    respond_to do |type| 
+      type.html { render :template => "errors/error_404", :layout => 'application', :status => 404 } 
+      type.all  { render :nothing => true, :status => 404 } 
+    end
+    true  # so we can do "render_404 and return"
+  end
   
   def feed_publisher_request?
     Hubbub::Config[:publisher] && Hubbub::Config[:publisher][:user_agent] &&
@@ -41,7 +58,10 @@ class ApplicationController < ActionController::Base
   # From auth_logic tutorial
   def login
     return @login if defined?(@login)
-    @login = UserSession.find
+    begin
+      @login = UserSession.find
+    rescue
+    end
   end
   
   def article_permalink_url article

@@ -35,7 +35,7 @@ object { margin-bottom: 1em; }
 .left { width: 280px; }
 .section { border-bottom: 1px dotted gray; margin-bottom: 1em; padding-bottom: 1em; }
 
-.pagination { text-align: center; }
+.pagination { text-align: left; margin-bottom: 2em;}
 
 #site-id { }
 #site-id h1.title { font-size: 210%; margin-bottom: 0.25em; }

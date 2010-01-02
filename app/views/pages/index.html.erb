@@ -16,8 +16,14 @@
 </div>
 <br style="clear: both;" />
 <div class="pages">
-  <% for page in @pages %>
-    <%= render :partial => 'pages/item', :locals => { :page => page } %>    
+  <% if @pages.empty? %>
+    <div class="right">
+      <p>No pages have been created yet.
+    </div>
+  <% else %>
+    <% for page in @pages %>
+      <%= render :partial => 'pages/item', :locals => { :page => page } %>    
+    <% end %>
   <% end %>
 </div>
 

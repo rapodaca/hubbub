@@ -16,6 +16,11 @@
 <div class="right">
   <h3 class="page-title"><%= @title %></h3>
 </div>
+<div class="right">
+  <div class="pagination">
+    <%= will_paginate(@articles) %>  
+  </div>  
+</div>
 <br style="clear: both;" />
 <div class="articles">
   <% for article in @articles %>
@@ -23,3 +28,8 @@
   <% end %>
 </div>
 <br style="clear: both;" />
+<div class="right">
+  <div class="pagination">
+    <%= will_paginate(@articles) %>  
+  </div>  
+</div>

@@ -12,8 +12,12 @@
 
 <div class="right">
   <h3 class="page-title"><%= @title %></h3>
-  <div class="tags">
-    <%= render :partial => @tags %>  
-  </div>
+  <% if @tags.empty? %>
+    <p>No Tags have been created yet.
+  <% else %>
+    <div class="tags">
+      <%= render :partial => @tags %>  
+    </div>
+  <% end %>
 </div>
 <br style="clear: both;" />
