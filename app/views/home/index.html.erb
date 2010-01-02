@@ -14,38 +14,9 @@
 
 
 <div class="right">
-  <div class="article section">
-    <div class="head">
-      <h3 class="title">
-        <%= link_to @article.title, article_permalink_url(@article) %>
-      </h3>
-      <div class="date">
-        <%= @article.created_at.strftime("%A %B %d, %Y") %>
-      </div> 
-    </div>
-    <div class="body">
-        <%= @article.body_html %>      
-    </div>
-    <div class="meta">
-      <div class="item">
-        Tags:&nbsp;
-        <ul>
-          <% for tag in @article.tags %>
-            <li><%= link_to tag.slug, tag_url(tag) %></li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="item">
-        Community:&nbsp;
-        <%= link_to 'Comments and Reactions', article_permalink_url(@article) + '#disqus_thread' %>
-      </div>
-    </div>
-  </div>
-  <p class="">
+  <%=  render :partial => 'articles/article', :collection => @recent_articles, :locals => { :summary => true } %>
+  <p>
     View all articles in the <%= link_to 'archives', articles_url %>.
   </p>
-</div>
-<div class="left">
-  <%= render :partial => 'recent_articles' %>
 </div>
 <br style="clear: both;" />

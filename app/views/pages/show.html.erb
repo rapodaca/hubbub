@@ -13,6 +13,11 @@
   <%= stylesheet_link_tag 'pages' %>
 <% end %>
 
-<h3 class="page-title"><%= @title %></h3>
+<div class="page">
+  <div class="right">
+    <h3 class="page-title"><%= @title %></h3>
+    <%= render :partial => @page %>
+  </div>
+  <br style="clear: both;" />  
+</div>
 
-<%= render :partial => @page %>

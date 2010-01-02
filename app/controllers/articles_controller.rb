@@ -1,14 +1,16 @@
 class ArticlesController < ApplicationController
   before_filter :require_user, :only => [:create, :new, :update, :edit, :destroy]
   def index
-    respond_to do |format|
-      @articles = Article.find_recent(:page => params[:page])
+    respond_to do |format|      
+      format.html do
+        @articles = Article.page_items params[:page]
+      end
       
-      format.html
       format.atom do
         if feed_publisher_request?
           redirect_to feed_publisher_url
         else
+          @articles = Article.feed_items
           render :layout => false
         end
       end

@@ -12,15 +12,19 @@ class Tag < ActiveRecord::Base
     self.slug
   end
   
-  def recent_articles page=1
-    options = {
-      :page => page,
-      :joins => :taggings,
-      :order      => 'articles.created_at DESC',
-      :conditions => ['taggings.tag_id=?', self.id],
-      :per_page      => Hubbub::Config[:articles_per_page]
-    }
-    
-    Article.paginate options
+  def page_articles page=nil
+    Article.paginate :page => page,
+                     :joins => :taggings,
+                     :order => 'articles.created_at DESC',
+                     :conditions => ['taggings.tag_id=?', self.id],
+                     :per_page      => Hubbub::Config[:items_per_page] || 10
+  end
+  
+  def feed_articles
+    Article.find :all,
+                 :joins => :taggings,
+                 :order => 'articles.created_at DESC',
+                 :conditions => ['taggings.tag_id=?', self.id],
+                 :limit      => Hubbub::Config[:items_per_feed] || 5
   end
 end

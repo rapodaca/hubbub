@@ -23,14 +23,16 @@ class Article < ActiveRecord::Base
     array.join ' '
   end
   
-  def self.find_recent options={}
-    options = {
-      :order => 'created_at DESC',
-      :per_page => options.delete(:per_page) || Hubbub::Config[:articles_per_page],
-      :page => options.delete(:page) || 1
-    }.merge(options)
-    
-    self.paginate options
+  def self.feed_items
+    self.find :all,
+              :limit => Hubbub::Config[:items_per_feed] || 5,
+              :order => 'created_at DESC'
+  end
+  
+  def self.page_items page
+    self.paginate :order => 'created_at DESC',
+                  :per_page => Hubbub::Config[:items_per_page] || 10,
+                  :page => page
   end
   
   def self.find_by_permalink options={}

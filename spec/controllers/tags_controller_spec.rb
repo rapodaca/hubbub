@@ -13,9 +13,13 @@ describe TagsController do
     mock_tag
     Tag.stub!(:find).and_return @tag
   end
-  def tag_has_one_article
+  def page_articles
     @article = mock_model(Article)
-    @tag.stub!(:recent_articles).and_return [@article]
+    @tag.stub!(:page_articles).and_return [@article]
+  end
+  def feed_articles
+    @articles = mock_model(Article)
+    @tag.stub!(:feed_articles).and_return [@article]
   end
   
   authenticated_actions [:update, :edit, :destroy]
@@ -33,7 +37,7 @@ describe TagsController do
   describe "GET show" do
     before(:each) do
       find_tag
-      tag_has_one_article
+      page_articles
     end
     it "assigns tag" do
       get :show, :id => @tag.id
@@ -44,6 +48,9 @@ describe TagsController do
       assigns[:articles].should == [@article]
     end
     describe "as atom" do
+      before(:each) do
+        feed_articles
+      end
       it "returns atom content" do
         get :show, :id => @tag.id, :format => 'atom'
         response.content_type.should == 'application/atom+xml'

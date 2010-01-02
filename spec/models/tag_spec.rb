@@ -26,10 +26,16 @@ describe Tag do
     @tag.weight.should == 0
   end
   
-  it "has no recent articles" do
+  it "has no feed articles" do
     do_create
     @tag.save
-    @tag.recent_articles.should == []
+    @tag.feed_articles.should == []
+  end
+  
+  it "has no page articles" do
+    do_create
+    @tag.save
+    @tag.page_articles.should == []
   end
 
   it "should create a new instance given valid attributes" do
@@ -51,14 +57,17 @@ describe Tag do
       @tag = Tag.find_by_slug 'foo'
     end
     
-    describe "#recent_articles" do
+    describe "#page_articles" do
+      before(:each) do
+        Hubbub::Config.stub!(:[]).with(:items_per_page).and_return 3
+      end
       it "returns them in the correct order" do
-        @tag.recent_articles.should == [@third, @first, @second]
+        @tag.page_articles(1).should == [@third, @first, @second]
       end
       
       describe "on page 2" do
         it "returns nothing" do
-          @tag.recent_articles(2).should == []
+          @tag.page_articles(2).should == []
         end
       end
     end

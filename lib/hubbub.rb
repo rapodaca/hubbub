@@ -5,7 +5,8 @@ module Hubbub
     Config = {
       :title => "Hubbub",
       :tagline => "Pure Blogging Simplicity",
-      :articles_per_page => 10
+      :feed_items_length => 5,
+      :page_items_length => 10
     }
   end
 end

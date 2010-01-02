@@ -10,10 +10,6 @@ describe ArticlesController do
     Article.stub!(:new).and_return @article
   end
   
-  def find_recent
-    Article.stub!(:find_recent).and_return [@article]
-  end
-  
   def find_by_permalink
     Article.stub!(:find_by_permalink).and_return @article
   end
@@ -25,6 +21,16 @@ describe ArticlesController do
   def do_index mime=nil
     request.env['HTTP_ACCEPT'] = mime unless mime.blank?
     get :index
+  end
+  
+  def page_items
+    mock_article
+    Article.stub!(:page_items).and_return [@article]
+  end
+  
+  def feed_items
+    mock_article
+    Article.stub!(:feed_items).and_return [@article]
   end
   
   def article_permalink_url article
@@ -52,9 +58,11 @@ describe ArticlesController do
   describe "GET index" do
     before(:each) do
       mock_article
-      find_recent
     end
     describe "with html" do
+      before(:each) do
+        page_items
+      end
       it "succeeds" do
         do_index
         response.should be_success
@@ -65,6 +73,13 @@ describe ArticlesController do
       end
     end
     describe "with atom" do
+      before(:each) do
+        feed_items
+      end
+      it "assigns articles" do
+        do_index 'application/atom+xml'
+        assigns[:articles].should == [@article]
+      end
       describe "response content type" do
         it "is atom" do
           do_index 'application/atom+xml'

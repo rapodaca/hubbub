@@ -37,19 +37,53 @@ describe Article do
     @article.tag_slugs.should == ""
   end
   
-  describe "#find_recent" do
+  # describe "#find_recent" do
+  #   before(:each) do
+  #     @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)
+  #     @second = Article.create!(:title => 'Second', :body => 'Second article.', :created_at => 2.day.ago)
+  #     @third = Article.create!(:title => 'Third', :body => 'Third article.', :created_at => 3.day.ago)
+  #   end
+  #   describe "limit two per page" do
+  #     before(:each) do
+  #       Hubbub::Config.stub!(:[]).with(:articles_per_page).and_return(2)
+  #     end
+  #     it "returns last article" do
+  #       articles = Article.find_recent :page => 1
+  #       articles.should == [@first, @second]
+  #     end
+  #   end
+  # end
+  
+  describe "with three saved articles" do
     before(:each) do
       @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)
       @second = Article.create!(:title => 'Second', :body => 'Second article.', :created_at => 2.day.ago)
       @third = Article.create!(:title => 'Third', :body => 'Third article.', :created_at => 3.day.ago)
     end
-    describe "limit two per page" do
-      before(:each) do
-        Hubbub::Config.stub!(:[]).with(:articles_per_page).and_return(2)
+    
+    describe "#feed items" do
+      describe "limit two per page" do
+        before(:each) do
+          Hubbub::Config.stub!(:[]).with(:items_per_feed).and_return(2)
+        end
+        it "returns last two articles" do
+          articles = Article.feed_items
+          articles.should == [@first, @second]
+        end
       end
-      it "returns last article" do
-        articles = Article.find_recent :page => 1
-        articles.should == [@first, @second]
+    end
+    
+    describe "#page items" do
+      describe "limit two per page" do
+        before(:each) do
+          Hubbub::Config.stub!(:[]).with(:items_per_page).and_return(2)          
+        end
+        describe "page 1" do
+          it "returns last two articles" do
+            articles = Article.page_items(1)
+            articles.should == [@first, @second]
+          end
+        end
       end
     end
   end
