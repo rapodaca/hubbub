@@ -37,6 +37,11 @@ describe Article do
     @article.tag_slugs.should == ""
   end
   
+  it "has no user" do
+    do_create
+    @article.user.should be_nil
+  end
+  
   describe "with three saved articles" do
     before(:each) do
       @first = Article.create!(:title => 'First', :body => 'First article.', :created_at => 1.day.ago)

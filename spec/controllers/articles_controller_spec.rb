@@ -3,7 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/shared/protected_controller_
 
 describe ArticlesController do
   def mock_article
-    @article = mock_model(Article, :created_at => Time.now, :title_slug => 'foo')
+    @article = mock_model(Article,
+      :created_at => Time.now, :title_slug => 'foo', :user= => true)
   end
   
   def new_article
@@ -119,6 +120,10 @@ describe ArticlesController do
       it "redirects to article permalink url" do
         do_create
         response.should redirect_to(article_permalink_url(@article))
+      end
+      it "assigns user to article" do
+        @article.should_receive(:user=).with(@user)
+        do_create
       end
     end
     describe "when unsuccessful" do
