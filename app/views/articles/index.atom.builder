@@ -8,7 +8,7 @@ atom_feed(
   feed.generator "Hubbub", "uri" => "http://github.com/rapodaca/hubbub"
 
   @articles.each do |article|
-   feed.entry(article, :url => article_url(article), :published => article.created_at, :updated => article.updated_at) do |entry|
+   feed.entry(article, :url => article_permalink_url(article), :published => article.created_at, :updated => article.updated_at) do |entry|
       entry.title   article.title
       entry.content article.body_html, :type => 'html'
     end
