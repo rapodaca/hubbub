@@ -13,7 +13,7 @@ require 'warp_drive/tasks'
 
 WarpDrive.configure do |config|
   # Define your gem spec settings here:
-  config.gem.version = "0.0.8"
+  config.gem.version = "0.0.9"
   config.gem.name = 'hubbub'
   
   # Add your gem dependencies here:
