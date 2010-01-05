@@ -8,10 +8,10 @@ class ArticlesController < ApplicationController
       
       format.atom do
         if feed_publisher_request?
-          redirect_to feed_publisher_url
-        else
           @articles = Article.feed_items
           render :layout => false
+        else
+          redirect_to feed_publisher_url
         end
       end
     end

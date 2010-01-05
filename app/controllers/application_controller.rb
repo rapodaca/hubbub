@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   end
   
   def feed_publisher_request?
+    logger.info "Feed Publisher Request?"
     Hubbub::Config[:publisher] && Hubbub::Config[:publisher][:user_agent] &&
     request.env['HTTP_USER_AGENT'].include?(Hubbub::Config[:publisher][:user_agent])
   end

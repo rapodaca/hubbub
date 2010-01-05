@@ -77,15 +77,9 @@ describe ArticlesController do
       before(:each) do
         feed_items
       end
-      it "assigns articles" do
+      it "redirects" do
         do_index 'application/atom+xml'
-        assigns[:articles].should == [@article]
-      end
-      describe "response content type" do
-        it "is atom" do
-          do_index 'application/atom+xml'
-          response.content_type.should == 'application/atom+xml'
-        end
+        response.should redirect_to(Hubbub::Config[:publisher][:redirect])
       end
       describe "as feed publisher" do
         before(:each) do
@@ -95,9 +89,15 @@ describe ArticlesController do
           })
           request.env['HTTP_USER_AGENT'] = 'FeedBurner 1.0'
         end
-        it "redirects" do
+        it "assigns articles" do
           do_index 'application/atom+xml'
-          response.should redirect_to(Hubbub::Config[:publisher][:redirect])
+          assigns[:articles].should == [@article]
+        end
+        describe "response content type" do
+          it "is atom" do
+            do_index 'application/atom+xml'
+            response.content_type.should == 'application/atom+xml'
+          end
         end
       end
     end
